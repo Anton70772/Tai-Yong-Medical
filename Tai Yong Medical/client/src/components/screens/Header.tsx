@@ -32,21 +32,44 @@ const Header = () => {
     return (
         <div className='header-container'>
             <nav className="nav">
-                <div className="nav__group nav__group--left">
-                    <Link className="nav__link" to="/">Главная</Link>
-                    {role === 'administrator' && (
+                {role === 'administrator' && (
+                    <>
+                        <Link className="nav__link" to="/">Главная</Link>
                         <Link className="nav__link" to="/services">Услуги и цены</Link>
-                    )}
-                    {role === 'administrator' && (
                         <Link className="nav__link" to="/specialists">Специалисты</Link>
-                    )}
-                </div>
-                <div className="nav__brand">Tai Yong Medical</div>
-                <div className="nav__group nav__group--right">
-                    <Link className="nav__link" to="/gallery">Галерея</Link>
-                    <Link className="nav__link" to="/news">Новости</Link>
-                    <Link className="nav__link" to="/about">О нас</Link>
-                </div>
+                        <Link className="nav__link" to="/clients">Клиенты</Link>
+
+                        <div className="nav__logo">Tai Yong Medical</div>
+
+                        <Link className="nav__link" to="/gallery">Галерея</Link>
+                        <Link className="nav__link" to="/news">Новости</Link>
+                        <Link className="nav__link" to="/about">О нас</Link>
+                    </>
+                )}
+                {role === 'stafferMedical' && (
+                    <>
+                        <Link className="nav__link" to="/">Главная</Link>
+                        <Link className="nav__link" to="/records">Записи</Link>
+
+                        <div className="nav__logo">Tai Yong Medical</div>
+
+                        <Link className="nav__link" to="/order-prosthetic">Заказать протез</Link>
+                        <Link className="nav__link" to="/schedule-patient">Записать пациента на прием</Link>
+                    </>
+                )}
+                {role === 'user' && (
+                    <>
+                        <Link className="nav__link" to="/">Главная</Link>
+                        <Link className="nav__link" to="/services">Услуги и цены</Link>
+                        <Link className="nav__link" to="/specialists">Специалисты</Link>
+
+                        <div className="nav__logo">Tai Yong Medical</div>
+                        
+                        <Link className="nav__link" to="/gallery">Галерея</Link>
+                        <Link className="nav__link" to="/news">Новости</Link>
+                        <Link className="nav__link" to="/about">О нас</Link>
+                    </>
+                )}
             </nav>
         </div>
     );

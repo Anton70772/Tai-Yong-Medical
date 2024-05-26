@@ -1,0 +1,112 @@
+.container {
+    width: 1250px;
+    margin: 70px auto;
+    background-image: url('/tym3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container__title {
+    display: flex;
+    font-size: 55px;
+    font-weight: 600;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.container__subtitle {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.info {
+    display: flex;
+    margin-top: 10%;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.info__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+    background-color: #00524a;
+    border-radius: 20px;
+}
+
+.info__number {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info__text {
+    font-size: 18px;
+    color: white;
+}
+
+.addAppointment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 20%;
+    background-color: #00524a;
+    border-radius: 20px;
+    padding: 30px;
+    font-size: 20px;
+    color: white;
+    transition: background-color 0.2s ease-in;
+}
+
+.addAppointment:hover {
+    background-color: #00776b;
+}
+
+.advantages {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(0, 82, 74, 0.9);
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+}
+
+.advantages__title {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.advantages__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.advantages__item {
+    flex: 1;
+    padding: 15px;
+    background-color: #00776b;
+    border-radius: 15px;
+}
+
+.advantages__itemTitle {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.advantages__itemText {
+    font-size: 18px;
+}

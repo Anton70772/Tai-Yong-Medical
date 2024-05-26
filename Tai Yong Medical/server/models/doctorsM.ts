@@ -7,6 +7,7 @@ class Doctor extends Model {
     public position!: string;
     public work_experience_start_day!: Date;
     public phone!: string;
+    public photo!: string;
 }
 
 Doctor.init(
@@ -33,6 +34,10 @@ Doctor.init(
             type: DataTypes.CHAR(12),
             allowNull: false,
             unique: true,
+        },
+        photo: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
     },
     {
