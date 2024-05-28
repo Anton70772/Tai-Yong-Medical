@@ -4,6 +4,8 @@ import Home from '../screens/Home';
 import Reg from '../ui/reg';
 import Header from '../screens/Header';
 import Specialists from '../UserPages/Specialists';
+import News from '../UserPages/News';
+import About from '../UserPages/About';
 
 const Routing = () => {
     return (
@@ -15,6 +17,8 @@ const Routing = () => {
                     <Route path='/registration' element={<Reg />}/>
                     <Route path='/' element={<Home />}/>
                     <Route path='/specialists' element={<Specialists />}/>
+                    <Route path='/news' element={<News />}/>
+                    <Route path='/about' element={<About />}/>
                 </Routes>
             </Router>
         </>

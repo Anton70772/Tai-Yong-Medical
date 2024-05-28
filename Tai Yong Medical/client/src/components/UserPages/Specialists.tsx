@@ -10,7 +10,7 @@ const Specialists = () => {
         const fetchDoctors = async () => {
             try {
                 const response = await axios.get('http://localhost:4200/doctor/doctors');
-                console.log('API response:', response.data);
+                console.log('Пришедшие данные:', response.data);
                 if (Array.isArray(response.data)) {
                     setDoctors(response.data);
                 } else {
@@ -30,7 +30,7 @@ const Specialists = () => {
             <div className={styles.cards}>
                 {doctors.map((doctor) => (
                     <div key={doctor.id} className={styles.card}>
-                        <img src={doctor.photo} alt={doctor.fullName} className={styles.card__photo} />
+                        <img src={`http://localhost:4200${doctor.photo}`} alt={doctor.fullName} className={styles.card__photo} />
                         <h2 className={styles.card__name}>{doctor.fullName}</h2>
                         <p className={styles.card__description}>{doctor.position}</p>
                     </div>
