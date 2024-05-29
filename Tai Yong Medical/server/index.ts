@@ -10,6 +10,7 @@ import patientHistoryR from './routes/patienthistoryR';
 import prostheticsR from './routes/prostheticsR';
 import servicesReportsR from './routes/services_reportsR';
 import servicesR from './routes/servicesR';
+import newsR from './routes/newsR'
 import path from 'path';
 
 const app = express();
@@ -29,6 +30,7 @@ app.use('/patientHistory', patientHistoryR);
 app.use('/prosthetic', prostheticsR);
 app.use('/servicesReport', servicesReportsR);
 app.use('/service', servicesR);
+app.use('/news', newsR);
 
 sequelize.authenticate()
     .then(() => {

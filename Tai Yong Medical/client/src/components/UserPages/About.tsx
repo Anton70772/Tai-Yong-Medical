@@ -7,6 +7,7 @@ const About = () => {
             <p className={styles.about__intro}>
                 Добро пожаловать в Tai Yong Medical, мирового лидера в области биотехнологий и аугментаций. Наша миссия - улучшать качество жизни людей по всему миру с помощью передовых медицинских технологий.
             </p>
+
             <div className={styles.about__section}>
                 <h2 className={styles.about__sectionTitle}>Наша История</h2>
                 <p className={styles.about__text}>
@@ -19,6 +20,7 @@ const About = () => {
                     В 2027 году мы стали известны благодаря нашим передовым протезам, которые изменили жизнь тысяч людей. Наша приверженность качеству и инновациям позволила нам занять лидирующие позиции на мировом рынке.
                 </p>
             </div>
+
             <div className={styles.about__section}>
                 <h2 className={styles.about__sectionTitle}>Наши Ценности</h2>
                 <p className={styles.about__text}>
@@ -31,6 +33,7 @@ const About = () => {
                     Мы также стремимся к прозрачности и этическим стандартам в нашей работе. Каждый наш шаг нацелен на улучшение качества жизни людей, и мы гордимся своей репутацией надежного и ответственного партнера.
                 </p>
             </div>
+
             <div className={styles.about__section}>
                 <h2 className={styles.about__sectionTitle}>Что Мы Делаем</h2>
                 <p className={styles.about__text}>
@@ -43,6 +46,7 @@ const About = () => {
                     Мы также предоставляем комплексные услуги по установке и настройке наших продуктов, а также поддержку и обслуживание после установки. Наша команда специалистов всегда готова помочь нашим клиентам на каждом этапе их пути к восстановлению.
                 </p>
             </div>
+
             <div className={styles.about__section}>
                 <h2 className={styles.about__sectionTitle}>Будущее</h2>
                 <p className={styles.about__text}>

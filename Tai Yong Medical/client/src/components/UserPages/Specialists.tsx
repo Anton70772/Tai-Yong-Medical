@@ -10,7 +10,6 @@ const Specialists = () => {
         const fetchDoctors = async () => {
             try {
                 const response = await axios.get('http://localhost:4200/doctor/doctors');
-                console.log('Пришедшие данные:', response.data);
                 if (Array.isArray(response.data)) {
                     setDoctors(response.data);
                 } else {

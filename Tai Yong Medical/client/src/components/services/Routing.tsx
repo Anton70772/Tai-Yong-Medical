@@ -6,6 +6,7 @@ import Header from '../screens/Header';
 import Specialists from '../UserPages/Specialists';
 import News from '../UserPages/News';
 import About from '../UserPages/About';
+import Services from '../UserPages/Services';
 
 const Routing = () => {
     return (
@@ -19,6 +20,7 @@ const Routing = () => {
                     <Route path='/specialists' element={<Specialists />}/>
                     <Route path='/news' element={<News />}/>
                     <Route path='/about' element={<About />}/>
+                    <Route path='/services' element={<Services />}/>
                 </Routes>
             </Router>
         </>
