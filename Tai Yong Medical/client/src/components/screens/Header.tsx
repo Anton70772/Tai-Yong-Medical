@@ -65,7 +65,7 @@ const Header = () => {
 
                         <div className="nav__logo">Tai Yong Medical</div>
                         
-                        <Link className="nav__link" to="/gallery">Галерея</Link>
+                        <Link className="nav__link" to="/galery">Галерея</Link>
                         <Link className="nav__link" to="/news">Новости</Link>
                         <Link className="nav__link" to="/about">О нас</Link>
                     </>
