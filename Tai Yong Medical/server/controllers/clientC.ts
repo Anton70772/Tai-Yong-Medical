@@ -44,7 +44,45 @@ export const createClient = async (req: Request, res: Response) => {
     }
 };
 
-const secretKey = 'SecretTaiYong';
+export const secretKey = 'SecretTaiYong';
+
+export const getProfile = async (req: Request, res: Response) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.sendStatus(401);
+    }
+
+    try {
+        const decodedToken = jwt.verify(token, secretKey) as { clientId: number, role: string };
+        const client = await Client.findByPk(decodedToken.clientId);
+        if (client) {
+            res.status(200).json(client);
+        } else {
+            res.status(404).json({ error: 'Клиент не найден' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Ошибка при получении профиля' });
+    }
+};
+
+export const refreshToken = async (req: Request, res: Response) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.sendStatus(401);
+    }
+
+    try {
+        const decodedToken = jwt.verify(token, secretKey) as { clientId: number, role: string };
+        const newToken = jwt.sign(decodedToken, secretKey, { expiresIn: '7d' });
+        res.status(200).json({ message: 'Токен успешно обновлен', token: newToken });
+    } catch (error) {
+        res.status(500).json({ error: 'Ошибка при обновлении токена' });
+    }
+};
 
 export const loginClient = async (req: Request, res: Response) => {
     const { email, password } = req.body;
@@ -58,7 +96,7 @@ export const loginClient = async (req: Request, res: Response) => {
                 } else if (password === 'stafferMedical') {
                     role = 'stafferMedical';
                 }
-                const token = jwt.sign({ clientId: client.id, role }, secretKey, { expiresIn: '1h' });
+                const token = jwt.sign({ clientId: client.id, role }, secretKey, { expiresIn: '7d' });
                 res.status(200).json({ message: 'Авторизация успешна', token });
             } else {
                 res.status(401).json({ message: 'Неверный пароль' });

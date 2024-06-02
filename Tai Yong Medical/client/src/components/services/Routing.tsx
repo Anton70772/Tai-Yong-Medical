@@ -8,6 +8,7 @@ import News from '../UserPages/News';
 import About from '../UserPages/About';
 import Services from '../UserPages/Services';
 import Gallery from '../UserPages/Gallery';
+import Profile from '../UserPages/Profile';
 
 const Routing = () => {
     return (
@@ -23,6 +24,7 @@ const Routing = () => {
                     <Route path='/about' element={<About />}/>
                     <Route path='/services' element={<Services />}/>
                     <Route path='/galery' element={<Gallery />}/>
+                    <Route path='/profile' element={<Profile />}/>
                 </Routes>
             </Router>
         </>

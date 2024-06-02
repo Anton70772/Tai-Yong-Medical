@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../../assets/header.css';
 import { useEffect, useState } from 'react';
+import { CgProfile } from "react-icons/cg";
 
 const Header = () => {
     const [role, setRole] = useState('');
@@ -64,10 +65,12 @@ const Header = () => {
                         <Link className="nav__link" to="/specialists">Специалисты</Link>
 
                         <div className="nav__logo">Tai Yong Medical</div>
-                        
+
                         <Link className="nav__link" to="/galery">Галерея</Link>
                         <Link className="nav__link" to="/news">Новости</Link>
                         <Link className="nav__link" to="/about">О нас</Link>
+
+                        <Link className="nav__link" to="/profile"><CgProfile /> </Link>
                     </>
                 )}
             </nav>

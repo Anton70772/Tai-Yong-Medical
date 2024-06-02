@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import Appointment from '../models/appointmentsM';
+import jwt from 'jsonwebtoken';
+import { secretKey } from './clientC'
 
 export const getAllAppointments = async (req: Request, res: Response) => {
     try {
@@ -25,8 +27,18 @@ export const getAppointmentById = async (req: Request, res: Response) => {
 };
 
 export const createAppointment = async (req: Request, res: Response) => {
-    const { dateTime, room, status, clients_id, doctors_id, services_id } = req.body;
+    const { dateTime, room, status, doctors_id, services_id } = req.body;
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
     try {
+        if (!token) {
+            return res.status(401).json({ error: 'Токен не найден' });
+        }
+
+        const decodedToken = jwt.verify(token, secretKey) as { clientId: number, role: string };
+        const clients_id = decodedToken.clientId;
+
         const newAppointment = await Appointment.create({
             dateTime,
             room,
@@ -35,8 +47,10 @@ export const createAppointment = async (req: Request, res: Response) => {
             doctors_id,
             services_id,
         });
+
         res.status(201).json(newAppointment);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Ошибка при создании новой записи' });
     }
 };
