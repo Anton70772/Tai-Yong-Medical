@@ -9,6 +9,7 @@ import About from '../UserPages/About';
 import Services from '../UserPages/Services';
 import Gallery from '../UserPages/Gallery';
 import Profile from '../UserPages/Profile';
+import AddPatient from '../MedicalPages/AddPatient';
 
 const Routing = () => {
     return (
@@ -25,6 +26,7 @@ const Routing = () => {
                     <Route path='/services' element={<Services />}/>
                     <Route path='/galery' element={<Gallery />}/>
                     <Route path='/profile' element={<Profile />}/>
+                    <Route path='/addpatient' element={<AddPatient />}/>
                 </Routes>
             </Router>
         </>

@@ -53,11 +53,12 @@ const Header = () => {
                     <>
                         <Link className="nav__link" to="/">Главная</Link>
                         <Link className="nav__link" to="/records">Записи</Link>
+                        <Link className="nav__link" to="/addpatient">Зарегистрировать клиента</Link>
 
                         <div className="nav__logo">Tai Yong Medical</div>
 
                         <Link className="nav__link" to="/order-prosthetic">Заказать протез</Link>
-                        <Link className="nav__link" to="/schedule-patient">Записать пациента на прием</Link>
+                        <Link className="nav__link" to="/schedule-patient">Записать клиента на прием</Link>
 
                         <Link className="nav__link" to="/profile"><CgProfile /> </Link>
                     </>
