@@ -9,15 +9,46 @@ const Profile = () => {
     const [profile, setProfile] = useState<IProfile | null>(null);
     const navigate = useNavigate();
 
+    interface IError {
+        response: {
+            status: number;
+            data: {
+                error: string;
+            };
+        };
+    }
+
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        axios.get('http://localhost:4200/client/profile', {
-            headers: {
-                'Authorization': `Bearer ${token}`
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await axios.get('http://localhost:4200/client/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                setProfile(response.data);
+            } catch (error) {
+                const err = error as IError;
+                if (err.response && err.response.status === 403 && err.response.data.error === 'Истек срок токена') {
+                    const refreshResponse = await axios.get('http://localhost:4200/client/refreshToken', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    localStorage.setItem('token', refreshResponse.data.token);
+                    const newResponse = await axios.get('http://localhost:4200/client/profile', {
+                        headers: {
+                            'Authorization': `Bearer ${refreshResponse.data.token}`
+                        }
+                    });
+                    setProfile(newResponse.data);
+                } else {
+                    console.error('Ошибка при получении данных:', error);
+                }
             }
-        })
-            .then(response => setProfile(response.data))
-            .catch(error => console.error('Ошибка при получении данных:', error));
+        };
+        fetchData();
     }, []);
 
     const handleLogout = () => {

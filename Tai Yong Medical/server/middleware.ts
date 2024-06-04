@@ -9,17 +9,19 @@ export const authToken = (req: Request, res: Response, next: NextFunction) => {
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-        console.log('No token provided');
+        console.log('Нет токена');
         return res.sendStatus(401);
     }
 
+    console.log('Полученный токен:', token);
+
     jwt.verify(token, secretKey, (err, user) => {
         if (err) {
-            console.log('Token verification failed', err);
+            console.log('Токен не прошел проверку', err);
             return res.sendStatus(403);
         }
         req.user = user as IUser;
-        console.log('Token verified, user:', req.user);
+        console.log('Токен подтвержден, user:', req.user);
         next();
     });
 };

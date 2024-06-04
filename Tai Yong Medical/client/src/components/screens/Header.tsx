@@ -45,6 +45,8 @@ const Header = () => {
                         <Link className="nav__link" to="/gallery">Галерея</Link>
                         <Link className="nav__link" to="/news">Новости</Link>
                         <Link className="nav__link" to="/about">О нас</Link>
+
+                        <Link className="nav__link" to="/profile"><CgProfile /> </Link>
                     </>
                 )}
                 {role === 'stafferMedical' && (
@@ -56,6 +58,8 @@ const Header = () => {
 
                         <Link className="nav__link" to="/order-prosthetic">Заказать протез</Link>
                         <Link className="nav__link" to="/schedule-patient">Записать пациента на прием</Link>
+
+                        <Link className="nav__link" to="/profile"><CgProfile /> </Link>
                     </>
                 )}
                 {role === 'user' && (
