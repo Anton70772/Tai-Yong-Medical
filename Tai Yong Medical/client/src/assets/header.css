@@ -61,9 +61,9 @@
     transform: translateX(-50%);
 } */
 
-.nav__link:hover::after {
+/* .nav__link:hover::after {
     width: 100%;
-}
+} */
 
 @media (max-width: 768px) {
     .nav {

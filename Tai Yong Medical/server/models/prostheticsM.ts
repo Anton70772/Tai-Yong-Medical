@@ -8,6 +8,7 @@ class Prosthetic extends Model {
     public price!: number;
     public count!: number | null;
     public description!: string;
+    public image!: string;
 }
 
 Prosthetic.init(
@@ -30,12 +31,16 @@ Prosthetic.init(
             allowNull: false,
         },
         count: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull: true,
             defaultValue: null,
-        },
+        },        
         description: {
             type: DataTypes.STRING(255),
+            allowNull: false,
+        },
+        image: {
+            type: DataTypes.STRING(45),
             allowNull: false,
         },
     },

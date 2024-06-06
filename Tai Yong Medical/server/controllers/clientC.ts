@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Client from '../models/clientM';
+import Doctor from '../models/doctorsM';
 import jwt from 'jsonwebtoken';
 
 export const getAllClients = async (req: Request, res: Response) => {
@@ -86,26 +87,53 @@ export const refreshToken = async (req: Request, res: Response) => {
 
 export const loginClient = async (req: Request, res: Response) => {
     const { email, password } = req.body;
+
     try {
         const client = await Client.findOne({ where: { email } });
+
         if (client) {
             if (client.password === password) {
                 let role = 'user';
+
                 if (password === 'administrator') {
                     role = 'administrator';
                 } else if (password === 'stafferMedical') {
                     role = 'stafferMedical';
                 }
+
                 const token = jwt.sign({ clientId: client.id, role }, secretKey, { expiresIn: '7d' });
-                res.status(200).json({ message: 'Авторизация успешна', token });
+                console.log('Успешная авторизация клиента с ролью:', role);
+                return res.status(200).json({ message: 'Авторизация успешна', token });
             } else {
-                res.status(401).json({ message: 'Неверный пароль' });
+                console.log('Неверный пароль для клиента');
+                return res.status(401).json({ message: 'Неверный пароль' });
             }
         } else {
-            res.status(404).json({ message: 'Пользователь не найден' });
+            const doctor = await Doctor.findOne({ where: { email } });
+
+            if (doctor) {
+                if (doctor.password === password) {
+                    let role = 'stafferMedical';
+
+                    if (password === 'administrator') {
+                        role = 'administrator';
+                    }
+
+                    const token = jwt.sign({ doctorId: doctor.id, role }, secretKey, { expiresIn: '1h' });
+                    console.log('Успешная авторизация врача с ролью:', role);
+                    return res.status(200).json({ message: 'Авторизация успешна', token });
+                } else {
+                    console.log('Неверный пароль для врача');
+                    return res.status(401).json({ message: 'Неверный пароль' });
+                }
+            } else {
+                console.log('Пользователь с таким email не найден');
+                return res.status(404).json({ message: 'Пользователь не найден' });
+            }
         }
     } catch (error) {
-        res.status(500).json({ error: 'Ошибка при авторизации' });
+        console.error('Ошибка при авторизации:', error);
+        return res.status(500).json({ message: 'Ошибка сервера' });
     }
 };
 

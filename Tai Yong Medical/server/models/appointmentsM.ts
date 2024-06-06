@@ -66,4 +66,8 @@ Appointment.init(
     }
 );
 
+Appointment.belongsTo(Client, { foreignKey: 'clients_id' });
+
+Appointment.belongsTo(Service, { foreignKey: 'services_id' });
+
 export default Appointment;

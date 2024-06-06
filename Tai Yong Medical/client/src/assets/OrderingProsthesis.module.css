@@ -1,0 +1,71 @@
+.prostheticsContainer {
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.prostheticsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.prostheticCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.prostheticCard:hover {
+    transform: translateY(-5px);
+}
+
+.prostheticImage {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.prostheticInfo {
+    text-align: left;
+}
+
+.productName {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.manufacturer,
+.price,
+.count,
+.description {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.orderButton {
+    padding: 10px 15px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.orderButton:hover {
+    background-color: #334;
+}

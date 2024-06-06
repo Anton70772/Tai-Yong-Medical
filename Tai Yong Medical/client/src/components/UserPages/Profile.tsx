@@ -51,7 +51,7 @@ const Profile = () => {
         fetchData();
     }, []);
 
-    const handleLogout = () => {
+    const Logout = () => {
         localStorage.removeItem('token');
         navigate('/authorization');
     };
@@ -74,7 +74,7 @@ const Profile = () => {
             <p className={styles.profileItem}><strong>Дата рождения:</strong> {profile.birthday}</p>
             <p className={styles.profileItem}><strong>Email:</strong> {profile.email}</p>
             <p className={styles.profileItem}><strong>Телефон:</strong> {profile.phone}</p>
-            <button className={styles.logoutButton} onClick={handleLogout}>Выйти</button>
+            <button className={styles.logoutButton} onClick={Logout}>Выйти</button>
         </div>
     );
 };

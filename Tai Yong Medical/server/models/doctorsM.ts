@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize  from '../db';
+import sequelize from '../db';
 
 class Doctor extends Model {
     public id!: number;
@@ -8,6 +8,8 @@ class Doctor extends Model {
     public work_experience_start_day!: Date;
     public phone!: string;
     public photo!: string;
+    public email!: string;
+    public password!: string;
 }
 
 Doctor.init(
@@ -38,6 +40,15 @@ Doctor.init(
         photo: {
             type: DataTypes.STRING,
             allowNull: true,
+        },
+        email: {
+            type: DataTypes.STRING(100),
+            allowNull: false,
+            unique: true,
+        },
+        password: {
+            type: DataTypes.STRING(16),
+            allowNull: false,
         },
     },
     {

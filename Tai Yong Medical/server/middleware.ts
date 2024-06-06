@@ -21,7 +21,7 @@ export const authToken = (req: Request, res: Response, next: NextFunction) => {
             return res.sendStatus(403);
         }
         req.user = user as IUser;
-        console.log('Токен подтвержден, user:', req.user);
+        console.log('Токен подтвержден, пользователь:', req.user);
         next();
     });
 };

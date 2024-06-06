@@ -25,7 +25,7 @@ export const getProstheticById = async (req: Request, res: Response) => {
 };
 
 export const createProsthetic = async (req: Request, res: Response) => {
-    const { product_name, manufacturer, price, count, description } = req.body;
+    const { product_name, manufacturer, price, count, description, image } = req.body;
     try {
         const newProsthetic = await Prosthetic.create({
             product_name,
@@ -33,6 +33,7 @@ export const createProsthetic = async (req: Request, res: Response) => {
             price,
             count,
             description,
+            image,
         });
         res.status(201).json(newProsthetic);
     } catch (error) {
@@ -42,11 +43,11 @@ export const createProsthetic = async (req: Request, res: Response) => {
 
 export const updateProsthetic = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { product_name, manufacturer, price, count, description } = req.body;
+    const { product_name, manufacturer, price, count, description, image } = req.body;
     try {
         const prosthetic = await Prosthetic.findByPk(id);
         if (prosthetic) {
-            await prosthetic.update({ product_name, manufacturer, price, count, description });
+            await prosthetic.update({ product_name, manufacturer, price, count, description, image });
             res.status(200).json(prosthetic);
         } else {
             res.status(404).json({ error: 'Протез не найден' });

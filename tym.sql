@@ -37,7 +37,7 @@ CREATE TABLE `appointments` (
   CONSTRAINT `fk_appointments_doctors1` FOREIGN KEY (`doctors_id`) REFERENCES `doctors` (`id`),
   CONSTRAINT `fk_appointments_patients1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`),
   CONSTRAINT `fk_appointments_services1` FOREIGN KEY (`services_id`) REFERENCES `services` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
+INSERT INTO `appointments` VALUES (1,'2024-06-21 17:11:00',106,'Прием завершен',1,3,2),(2,'2024-06-15 00:00:00',112,'Прием завершен',1,1,1),(3,'2024-06-10 00:00:00',122,'Запись назначена',5,4,3),(4,'2024-06-20 13:00:00',105,'Прием завершен',5,1,10),(5,'2024-06-10 12:00:00',123,'Запись отменена',5,3,2),(6,'2024-06-14 13:00:00',123,'Запись назначена',5,3,4);
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +69,7 @@ CREATE TABLE `clients` (
   `password` varchar(16) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +78,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Полищук','Антон','Александрович','2005-09-21','М','+79806261773','anton@yandex.ru','administrator'),(2,'Беспалов','Ярослав','Викторович','2008-02-06','М','+79307701773','yaroslav@yandex.ru','stafferMedical'),(5,'тест','тест','Александрович','2005-09-21','М','+79806261773','anton1@yandex.ru','hash'),(7,'Тестов','Тест','Тестович','2024-05-17',NULL,'+79007777777','klava@yandex.ru','klava343'),(8,'кмкаум','амвамвм','вамвамввм','2239-09-10',NULL,'+79007777777','djiwjd@yandex.ru','sdhed2we24234');
+INSERT INTO `clients` VALUES (1,'Полищук','Антон','Александрович','2005-09-21','М','+79806261773','anton@yandex.ru','administrator'),(2,'Беспалов','Ярослав','Викторович','2008-02-06','М','+79307701773','yaroslav@yandex.ru','stafferMedical'),(5,'тест','тест','Александрович','2005-09-21','М','+79806261773','anton1@yandex.ru','hash'),(7,'Тестов','Тест','Тестович','2024-05-17',NULL,'+79007777777','klava@yandex.ru','klava343'),(8,'кмкаум','амвамвм','вамвамввм','2239-09-10',NULL,'+79007777777','djiwjd@yandex.ru','sdhed2we24234'),(9,'Клиент','клиент','клиент','2024-06-05',NULL,'+79007777777','klient@yandex.ru','klient77'),(10,'амуамумау','емемек','уамумукаму','2024-06-15',NULL,'+79007777777','test@yandex.ru','test2131'),(11,'Ярик','Ярик','Ярик','2008-02-06',NULL,'+79301860642','yarik@yandex.ru','yarik123'),(15,'кмукмук','вмукм','мукмукмукмку','2024-06-12',NULL,'+79996481971','testov@yandex.ru','testov123'),(16,'комп','комп','комп','2024-06-20',NULL,'+79007777777','komp@yandex.ru','komp123'),(17,'комп','комп','компудахтер','2024-06-21',NULL,'+79007777777','kompudachter@yandex.ru','kompudachter123'),(18,'мыш','мыш','мыш','2024-06-02',NULL,'+79007777777','mish@yandex.ru','mish923'),(19,'моник','моник','моник','2024-06-09',NULL,'+79007777997','monik@yandex.ru','monik123');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,9 +96,12 @@ CREATE TABLE `doctors` (
   `work_experience_start_day` date NOT NULL,
   `phone` char(12) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(16) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone_UNIQUE` (`phone`),
-  UNIQUE KEY `fullName_UNIQUE` (`fullName`)
+  UNIQUE KEY `fullName_UNIQUE` (`fullName`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -107,7 +111,7 @@ CREATE TABLE `doctors` (
 
 LOCK TABLES `doctors` WRITE;
 /*!40000 ALTER TABLE `doctors` DISABLE KEYS */;
-INSERT INTO `doctors` VALUES (1,'Иванов Иван Иванович','Ортопед','2010-05-15','12345678901','/images/doctors/tym1.jpg'),(2,'Петров Петр Петрович','Хирург','2012-07-20','12345678902','/images/doctors/tym1.jpg'),(3,'Сидоров Сидор Сидорович','Травматолог','2011-03-11','12345678903','/images/doctors/tym1.jpg'),(4,'Кузнецов Алексей Алексеевич','Нейрохирург','2009-09-30','12345678904','/images/doctors/tym1.jpg'),(5,'Михайлов Михаил Михайлович','Кардиолог','2013-01-21','12345678905','/images/doctors/tym1.jpg'),(6,'Федоров Федор Федорович','Пластический хирург','2014-11-25','12345678906','/images/doctors/tym1.jpg'),(7,'Алексеев Алексей Алексеевич','Офтальмолог','2008-06-10','12345678907','/images/doctors/tym1.jpg');
+INSERT INTO `doctors` VALUES (1,'Иванов Иван Иванович','Ортопед','2010-05-15','12345678901','/images/doctors/tym1.jpg','ivan@yandex.ru','stafferMedical'),(2,'Петров Петр Петрович','Хирург','2012-07-20','12345678902','/images/doctors/tym1.jpg','petr@yandex.ru','stafferMedical'),(3,'Сидоров Сидор Сидорович','Травматолог','2011-03-11','12345678903','/images/doctors/tym1.jpg','sidor@yandex.ru','stafferMedical'),(4,'Кузнецов Алексей Алексеевич','Нейрохирург','2009-09-30','12345678904','/images/doctors/tym1.jpg','aleksey@yandex.ru','stafferMedical'),(5,'Михайлов Михаил Михайлович','Кардиолог','2013-01-21','12345678905','/images/doctors/tym1.jpg','mihan@yandex.ru','stafferMedical'),(6,'Федоров Федор Федорович','Пластический хирург','2014-11-25','12345678906','/images/doctors/tym1.jpg','fedor@yandex.ru','stafferMedical'),(7,'Алексеев Алексей Алексеевич','Офтальмолог','2008-06-10','12345678907','/images/doctors/tym1.jpg','aleksey1@yandex.ru','stafferMedical');
 /*!40000 ALTER TABLE `doctors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,8 +217,9 @@ CREATE TABLE `prosthetics` (
   `price` decimal(10,2) unsigned NOT NULL,
   `count` int unsigned DEFAULT NULL,
   `description` varchar(255) NOT NULL,
+  `image` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,6 +228,7 @@ CREATE TABLE `prosthetics` (
 
 LOCK TABLES `prosthetics` WRITE;
 /*!40000 ALTER TABLE `prosthetics` DISABLE KEYS */;
+INSERT INTO `prosthetics` VALUES (1,'Кибернетический протез глаза: \"Cognitive interface prosthesis system\"','Sarif Industries',27000.00,9,'Аугментация глаз для улучшения зрения и ночного видения.','/images/prosthetics/tym1.jpg'),(2,'Кибернетический мозговой чип: \"Computer-Assisted Social Interaction Enchanced (C.A.S.I.E.)\"','Tai Yong Medical',17000.00,6,'Инновационный мозговой чип, способствующий улучшению когнитивных функций и оптимизации работы мозга.','/images/prosthetics/tym1.jpg'),(3,'Кибернетический протез кисти: \"Isoiay\"','VersaLife',12000.00,2,'Протез \"Isoiay\" обеспечивает точное и естественное движение кисти, позволяя пациенту вернуться к повседневным делам с комфортом и уверенностью.','/images/prosthetics/tym1.jpg'),(4,'Аугментированный интеллектуальный нейроинтерфейс: \"SmartVision X4\"','Sarif Industries',34000.00,3,'Расширяет обзор и улучшает понимание окружающего мира.','/images/prosthetics/tym1.jpg'),(5,'Кибернетическая кожа: \"DermaFlex Mk.IV\"','Picus Group',25000.00,4,'Предоставляет высокий уровень защиты и улучшает чувствительность кожи.','/images/prosthetics/tym1.jpg'),(6,'Нейро-сетевой интерфейс: \"NeuralLink Pro\"','VersaLife',38000.00,7,'Обеспечивает прямое взаимодействие между мозгом и технологическими устройствами.','/images/prosthetics/tym1.jpg'),(7,'Кибернетический имплантат ноги: \"PowerStride Plus\"','LIMB International',29000.00,1,'Повышает скорость и маневренность при движении.','/images/prosthetics/tym1.jpg'),(8,'Микро-нейроинтерфейс: \"NeuroLink Nano\"','Tai Yong Medical',41000.00,4,'Миниатюрный имплантат, улучшающий память и когнитивные способности.','/images/prosthetics/tym1.jpg'),(9,'Бионическая рука: \"TitanArm Mk.II\"','Sarif Industries',36000.00,5,'Обеспечивает силу и гибкость в повседневных задачах и экстремальных условиях.','/images/prosthetics/tym1.jpg'),(10,'Кибернетический слуховой аппарат: \"AudioEnhance Bionic Ear\"','Picus Group',31000.00,8,'Улучшает слух и фильтрует внешние звуки для комфортного восприятия окружающего мира.','/images/prosthetics/tym1.jpg');
 /*!40000 ALTER TABLE `prosthetics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,4 +302,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-31 21:25:40
+-- Dump completed on 2024-06-06 20:53:26
