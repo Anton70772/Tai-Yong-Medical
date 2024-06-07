@@ -7,17 +7,17 @@ const Home = () => {
             <p className={styles.container__subtitle}>Мы заботимся о вашем здоровье и качестве жизни!</p>
             <div className={styles.info}>
                 <div className={styles.info__item}>
-                    <span className={styles.info__number}>10</span>
+                    <span className={styles.info__number}>Свыше 10</span>
                     <span className={styles.info__text}>лет успешной работы</span>
                 </div>
 
                 <div className={styles.info__item}>
-                    <span className={styles.info__number}>7</span>
+                    <span className={styles.info__number}>Более 10</span>
                     <span className={styles.info__text}>опытных врачей-хирургов</span>
                 </div>
 
                 <div className={styles.info__item}>
-                    <span className={styles.info__number}>25+</span>
+                    <span className={styles.info__number}>Более 25</span>
                     <span className={styles.info__text}>Высокотехнологичных протезов</span>
                 </div>
             </div>

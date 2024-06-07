@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../assets/AddPatient.module.css';
 import { IProfile } from '../types/IProfile';
-import ClientList from './ClientList';
-import AddClientForm from './AddClientForm';
+import ClientList from '../MedicalPages/ClientList';
+import AddAdminClientForm from './AddAdminClientForm';
 
-const AddPatient = () => {
+const AddClientAdmin = () => {
     const [clients, setClients] = useState<IProfile[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,25 +22,25 @@ const AddPatient = () => {
         fetchClients();
     }, []);
 
-    const AddClient = (newClient: IProfile) => {
+    const handleAddClient = (newClient: IProfile) => {
         setClients(prevClients => [...prevClients, newClient]);
     };
 
-    const OpenModal = () => {
+    const handleOpenModal = () => {
         setIsModalOpen(true);
     };
 
-    const CloseModal = () => {
+    const handleCloseModal = () => {
         setIsModalOpen(false);
     };
 
     return (
         <div className={styles.container}>
             <ClientList clients={clients} />
-            <button onClick={OpenModal} className={styles.addButton}>Добавить нового клиента</button>
-            {isModalOpen && <AddClientForm onClose={CloseModal} onAddClient={AddClient} />}
+            <button onClick={handleOpenModal} className={styles.addButton}>Добавить нового клиента</button>
+            {isModalOpen && <AddAdminClientForm onClose={handleCloseModal} onAddClient={handleAddClient} />}
         </div>
     );
 };
 
-export default AddPatient;
+export default AddClientAdmin;

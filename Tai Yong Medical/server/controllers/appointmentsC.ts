@@ -69,9 +69,13 @@ export const getAppointmentById = async (req: Request, res: Response) => {
 };
 
 export const createAppointment = async (req: Request, res: Response) => {
-    const { dateTime, room, status, doctors_id, services_id } = req.body;
+    const { dateTime, room, status, doctors_id, services_id, clients_id } = req.body;
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
+
+    console.log('Incoming request to create appointment:', req.body);
+    console.log('Authorization header:', authHeader);
+    console.log('Token:', token);
 
     try {
         if (!token) {
@@ -79,7 +83,11 @@ export const createAppointment = async (req: Request, res: Response) => {
         }
 
         const decodedToken = jwt.verify(token, secretKey) as { clientId: number, role: string };
-        const clients_id = decodedToken.clientId;
+        console.log('Decoded token:', decodedToken);
+
+        if (!clients_id) {
+            return res.status(400).json({ error: 'Client ID не передан' });
+        }
 
         const newAppointment = await Appointment.create({
             dateTime,
@@ -92,7 +100,7 @@ export const createAppointment = async (req: Request, res: Response) => {
 
         res.status(201).json(newAppointment);
     } catch (error) {
-        console.error(error);
+        console.error('Error during appointment creation:', error);
         res.status(500).json({ error: 'Ошибка при создании новой записи' });
     }
 };

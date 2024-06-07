@@ -38,6 +38,7 @@ export const createOrder = async (req: Request, res: Response) => {
         });
         res.status(201).json(newOrder);
     } catch (error) {
+        console.error('Ошибка при создании заказа:', error);
         res.status(500).json({ error: 'Ошибка при создании заказа' });
     }
 };

@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { IProfile } from '../types/IProfile';
 import styles from '../../assets/AddPatient.module.css';
 
-interface ClientListProps {
+interface IClientList {
     clients: IProfile[];
 }
 
-const ClientList: React.FC<ClientListProps> = ({ clients }) => {
+const ClientList: React.FC<IClientList> = ({ clients, onClientSelect }) => {
     const [search, setSearch] = useState('');
 
     const Search = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };
 
-    const filteredClients = clients.filter((client) => {
+    const filterClients = clients.filter((client) => {
         const fullName = `${client.Name} ${client.surName} ${client.lastName} ${client.email}`;
         return fullName.toLowerCase().includes(search.toLowerCase());
     });
@@ -31,8 +31,8 @@ const ClientList: React.FC<ClientListProps> = ({ clients }) => {
             </div>
             <h2 className={styles.title}>Список клиентов</h2>
             <ul className={styles.client_list}>
-                {filteredClients.map((client) => (
-                    <li key={client.id} className={styles.clientItem}>
+                {filterClients.map((client) => (
+                    <li key={client.id} className={styles.clientItem} onClick={() => onClientSelect(client)}>
                         <span><strong>Имя:</strong> {client.Name}</span>
                         <span><strong>Фамилия:</strong> {client.surName}</span>
                         <span><strong>Отчество:</strong> {client.lastName}</span>

@@ -43,8 +43,8 @@ const Header = () => {
                         <>
                             <Link className="nav__link" to="/">Главная</Link>
                             <Link className="nav__link" to="/services">Услуги и цены</Link>
-                            <Link className="nav__link" to="/specialists">Специалисты</Link>
-                            <Link className="nav__link" to="/clients">Клиенты</Link>
+                            <Link className="nav__link" to="/admin_specialists">Специалисты</Link>
+                            <Link className="nav__link" to="/addClientAdmin">Клиенты</Link>
 
                             <div className="nav__logo">Tai Yong Medical</div>
 
@@ -64,7 +64,7 @@ const Header = () => {
                             <div className="nav__logo">Tai Yong Medical</div>
 
                             <Link className="nav__link" to="/orderingProsthesis">Заказать протез</Link>
-                            <Link className="nav__link" to="/schedule-patient">Записать клиента на прием</Link>
+                            <Link className="nav__link" to="/addAppointmentMed">Записать клиента на прием</Link>
 
                             <Link className="nav__link" to="/medProfile"><CgProfile /> </Link>
                         </>

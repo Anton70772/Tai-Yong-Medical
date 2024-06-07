@@ -13,6 +13,9 @@ import AddPatient from '../MedicalPages/AddPatient';
 import MedicalProfile from '../MedicalPages/MedicalProfile';
 import Appointments from '../MedicalPages/Appointments';
 import OrderingProsthesis from '../MedicalPages/OrderingProsthesis';
+import AddAppointmentMed from '../MedicalPages/AddAppointmentMed';
+import AdminSpecialists from '../AdminPages/AdminSpecialists';
+import AddClientAdmin from '../AdminPages/AddClientAdmin';
 
 const Routing = () => {
     return (
@@ -33,6 +36,9 @@ const Routing = () => {
                     <Route path='/medProfile' element={<MedicalProfile />}/>
                     <Route path='/medAppointments' element={<Appointments />}/>
                     <Route path='/orderingProsthesis' element={<OrderingProsthesis />}/>
+                    <Route path='/addAppointmentMed' element={<AddAppointmentMed />}/>
+                    <Route path='/admin_specialists' element={<AdminSpecialists />}/>
+                    <Route path='/addClientAdmin' element={<AddClientAdmin />}/>
                 </Routes>
             </Router>
         </>

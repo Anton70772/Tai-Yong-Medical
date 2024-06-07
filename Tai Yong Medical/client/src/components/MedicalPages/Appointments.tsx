@@ -8,9 +8,25 @@ const Appointments = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
+    const refreshToken = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await axios.get('http://localhost:4200/client/refresh-token', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            localStorage.setItem('token', response.data.token);
+            return response.data.token;
+        } catch (error) {
+            console.error('Ошибка при обновлении токена:', error);
+            return null;
+        }
+    };
+
     useEffect(() => {
         const fetchAppointments = async () => {
-            const token = localStorage.getItem('token');
+            let token = localStorage.getItem('token');
             if (!token) {
                 setError('Необходима авторизация');
                 setLoading(false);
@@ -25,7 +41,20 @@ const Appointments = () => {
                 setAppointments(response.data);
             } catch (err) {
                 console.error('Ошибка при получении записей:', err);
-                setError('Ошибка при получении записей');
+                if (err.response.status === 401 && err.response.data.error === 'Токен не найден') {
+                    token = await refreshToken();
+                    if (token) {
+                        const response = await axios.get('http://localhost:4200/appointments/doctor', {
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
+
+                        setAppointments(response.data);
+                    } else {
+                        setError('Ошибка при обновлении токена');
+                    }
+                } else {
+                    setError('Ошибка при получении записей');
+                }
             } finally {
                 setLoading(false);
             }

@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../assets/AddAppointment.module.css';
 import { Doctor } from '../types/IDoctor';
-import { IAppointment } from '../types/IAppointment';
-import { jwtDecode } from "jwt-decode";
-import { JwtPayload } from 'jwt-decode';
+import { IClient } from '../types/IClient';
+import { IServices } from '../types/IService';
 
-const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
+const AppointmentForm: React.FC<IClient> = ({ client, onClose }) => {
     const [doctors, setDoctors] = useState<Doctor[]>([]);
-    const [selectedDoctor, setSelectedDoctor] = useState<string | null>(null);
+    const [selectDoctor, setSelectDoctor] = useState<string | null>(null);
+    const [services, setServices] = useState<IServices[]>([]);
+    const [selectService, setSelectService] = useState<string>('');
     const [date, setDate] = useState<string>('');
     const [time, setTime] = useState<string>('09:00');
     const [room] = useState<number>(Math.floor(Math.random() * 25) + 101);
@@ -16,6 +17,10 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
     useEffect(() => {
         axios.get('http://localhost:4200/doctor/doctors')
             .then(response => setDoctors(response.data))
+            .catch(error => console.error('Ошибка при получении данных:', error));
+
+        axios.get('http://localhost:4200/service/services')
+            .then(response => setServices(response.data))
             .catch(error => console.error('Ошибка при получении данных:', error));
     }, []);
 
@@ -26,41 +31,28 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
             return;
         }
     
-        try {
-            const token = localStorage.getItem('token');
-            if (token) {
-                const decoded: JwtPayload = jwtDecode(token);
-                console.log(decoded);
+        const clients_id = client.id;
+        const dateTime = `${date}T${time}`;
     
-                const clients_id = decoded.sub;
+        const data = {
+            dateTime,
+            room,
+            status: 'Запись назначена',
+            clients_id,
+            doctors_id: selectDoctor,
+            services_id: selectService,
+        };
     
-                const dateTime = `${date}T${time}`;
-    
-                const data = {
-                    dateTime,
-                    room,
-                    status: 'Запись назначена',
-                    clients_id,
-                    doctors_id: selectedDoctor,
-                    services_id: service.id,
-                };
-    
-                axios.post('http://localhost:4200/appointments/appointments', data, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-                    .then(response => {
-                        console.log('Запись успешно создана:', response.data);
-                        onClose();
-                    })
-                    .catch(error => console.error('Ошибка при создании записи:', error));
-            } else {
-                console.error('Токен отсутствует в localStorage');
+        axios.post('http://localhost:4200/appointments/appointments', data, {
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
-        } catch (error) {
-            console.error('Ошибка при декодировании токена или запросе:', error);
-        }
+        })
+        .then(response => {
+            console.log('Запись успешно создана:', response.data);
+            onClose();
+        })
+        .catch(error => console.error('Ошибка при создании записи:', error));
     };    
 
     const timeSlots = [
@@ -73,7 +65,20 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
         <div className={styles.modal}>
             <div className={styles.modalContent}>
                 <h2>Запись на консультацию</h2>
-                <p>Услуга: {service.name}</p>
+                <label>
+                    Услуга:
+                    <select
+                        value={selectService}
+                        onChange={(e) => setSelectService(e.target.value)}
+                    >
+                        <option value="">Выберите услугу</option>
+                        {services.map(service => (
+                            <option key={service.id} value={service.id}>
+                                {service.name}
+                            </option>
+                        ))}
+                    </select>
+                </label>
                 <label>
                     Дата:
                     <input
@@ -98,8 +103,8 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
                 <label>
                     Врач:
                     <select
-                        value={selectedDoctor || ''}
-                        onChange={(e) => setSelectedDoctor(e.target.value)}
+                        value={selectDoctor || ''}
+                        onChange={(e) => setSelectDoctor(e.target.value)}
                     >
                         <option value="">Выберите врача</option>
                         {doctors.map(doctor => (
@@ -112,11 +117,11 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
                 <label>
                     Кабинет: {room}
                 </label>
-                <button onClick={addAppointment}>Записаться</button>
+                <button onClick={addAppointment}>Записать</button>
                 <button onClick={onClose}>Отмена</button>
             </div>
         </div>
     );
 };
 
-export default AddAppointment;
+export default AppointmentForm;
