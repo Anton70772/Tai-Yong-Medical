@@ -1,0 +1,82 @@
+.appointmentsContainer {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.tittle {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.appointmentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1em;
+    color: #333;
+}
+
+.appointmentsTable th {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.appointmentsTable td {
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.appointmentsTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.appointmentsTable tr:hover {
+    background-color: #e9e9e9;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.status-scheduled {
+    background-color: #e0f7fa;
+    color: #00796b;
+}
+
+.status-canceled {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.status-completed {
+    background-color: #e8f5e9;
+    color: #388e3c;
+}
+
+@media (max-width: 768px) {
+    .appointmentsContainer {
+        padding: 10px;
+    }
+
+    .appointmentsTable th,
+    .appointmentsTable td {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+}

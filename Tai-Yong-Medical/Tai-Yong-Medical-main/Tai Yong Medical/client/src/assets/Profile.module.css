@@ -1,0 +1,54 @@
+.profileContainer {
+    margin: 50px auto;
+    width: 60%;
+    background-color: rgba(0, 82, 74, 0.9);
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+}
+
+.profileTitle {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.profileItem {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.profileSubtitle {
+    font-size: 24px;
+    margin: 20px 0 10px;
+}
+
+.appointmentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.appointmentItem {
+    padding: 10px;
+    border: 2px solid #00776b;
+    border-radius: 10px;
+    background-color: #005c4b;
+    text-align: left;
+}
+
+.logoutButton {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff6347;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+    background-color: #e5533d;
+}

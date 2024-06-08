@@ -1,0 +1,136 @@
+/* .header-container {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 10px 0;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.nav__group {
+    display: flex;
+    align-items: center;
+}
+
+.nav__group--left,
+.nav__group--right {
+    flex: 1;
+}
+
+.nav__logo {
+    flex: 1;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.nav__link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav__link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #ff0000;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+/* .nav__link:hover::after {
+    width: 100%;
+} */
+
+.header-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+    margin: 20px 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1250px;
+    padding: 0 20px;
+}
+
+.nav__group {
+    display: flex;
+    align-items: center;
+}
+
+.nav__group--left,
+.nav__group--right {
+    flex: 1;
+    justify-content: space-evenly;
+}
+
+.nav__logo {
+    flex: 1;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    color: #ff0000;
+    margin: 0 10px;
+}
+
+.nav__link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 12px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    margin: 0 20px;
+}
+
+.nav__link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #ff0000;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav__link:hover::after {
+    width: 100%;
+}
