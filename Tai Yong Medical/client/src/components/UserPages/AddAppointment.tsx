@@ -25,17 +25,18 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
             console.error('Токен не найден');
             return;
         }
-    
+
         try {
             const token = localStorage.getItem('token');
             if (token) {
                 const decoded: JwtPayload = jwtDecode(token);
-                console.log(decoded);
-    
-                const clients_id = decoded.sub;
-    
+                console.log('Декодированный токен:', decoded);
+
+                const clients_id = decoded.clientId;
+                console.log('ID клиента:', clients_id);
+
                 const dateTime = `${date}T${time}`;
-    
+
                 const data = {
                     dateTime,
                     room,
@@ -44,13 +45,16 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
                     doctors_id: selectedDoctor,
                     services_id: service.id,
                 };
-    
+
+                console.log('Отправляемые данные:', data);      
+
                 axios.post('http://localhost:4200/appointments/appointments', data, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 })
                     .then(response => {
+                        console.log('Полученные данные:', response.data);
                         console.log('Запись успешно создана:', response.data);
                         onClose();
                     })
@@ -61,7 +65,7 @@ const AddAppointment: React.FC<IAppointment> = ({ service, onClose }) => {
         } catch (error) {
             console.error('Ошибка при декодировании токена или запросе:', error);
         }
-    };    
+    };
 
     const timeSlots = [
         '09:00', '10:00', '11:00', '12:00',

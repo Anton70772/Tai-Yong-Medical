@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const [profile, setProfile] = useState<IProfile | null>(null);
+    const [appointments, setAppointments] = useState([]);
     const navigate = useNavigate();
 
     interface IError {
@@ -28,6 +29,13 @@ const Profile = () => {
                     }
                 });
                 setProfile(response.data);
+
+                const appointmentsResponse = await axios.get('http://localhost:4200/client/appointments', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                setAppointments(appointmentsResponse.data);
             } catch (error) {
                 const err = error as IError;
                 if (err.response && err.response.status === 403 && err.response.data.error === 'Истек срок токена') {
@@ -43,6 +51,13 @@ const Profile = () => {
                         }
                     });
                     setProfile(newResponse.data);
+
+                    const appointmentsResponse = await axios.get('http://localhost:4200/client/appointments', {
+                        headers: {
+                            'Authorization': `Bearer ${refreshResponse.data.token}`
+                        }
+                    });
+                    setAppointments(appointmentsResponse.data);
                 } else {
                     console.error('Ошибка при получении данных:', error);
                 }
@@ -74,6 +89,21 @@ const Profile = () => {
             <p className={styles.profileItem}><strong>Дата рождения:</strong> {profile.birthday}</p>
             <p className={styles.profileItem}><strong>Email:</strong> {profile.email}</p>
             <p className={styles.profileItem}><strong>Телефон:</strong> {profile.phone}</p>
+            {/* <h2 className={styles.profileSubtitle}>Мои записи</h2>
+            <div className={styles.appointmentsList}>
+                {appointments.length > 0 ? (
+                    appointments.map((appointment) => (
+                        <div key={appointment.id} className={styles.appointmentItem}>
+                            <p><strong>Дата и время:</strong> {appointment.dateTime}</p>
+                            <p><strong>Доктор:</strong> {appointment.doctorName}</p>
+                            <p><strong>Услуга:</strong> {appointment.serviceName}</p>
+                            <p><strong>Статус:</strong> {appointment.status}</p>
+                        </div>
+                    ))
+                ) : (
+                    <p>У вас нет записей.</p>
+                )}
+            </div> */}
             <button className={styles.logoutButton} onClick={Logout}>Выйти</button>
         </div>
     );

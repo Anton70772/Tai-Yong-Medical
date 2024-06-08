@@ -27,6 +27,7 @@ export const getServiceById = async (req: Request, res: Response) => {
 export const createService = async (req: Request, res: Response) => {
     const { name, description, price, required_documents, doctors_id } = req.body;
     try {
+        console.log('Получен запрос на создание новой услуги:', req.body);
         const newService = await Service.create({
             name,
             description,
@@ -34,8 +35,10 @@ export const createService = async (req: Request, res: Response) => {
             required_documents,
             doctors_id,
         });
+        console.log('Успешно создана новая услуга:', newService);
         res.status(201).json(newService);
     } catch (error) {
+        console.error('Ошибка при создании услуги:', error);
         res.status(500).json({ error: 'Ошибка при создании услуги' });
     }
 };

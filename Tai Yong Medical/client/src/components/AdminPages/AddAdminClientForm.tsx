@@ -29,7 +29,7 @@ const AddAdminClientForm: React.FC<AddClientFormProps> = ({ onClose, onAddClient
         });
     };
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const Submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Отправляемые данные:', formData);
         try {
@@ -63,7 +63,7 @@ const AddAdminClientForm: React.FC<AddClientFormProps> = ({ onClose, onAddClient
             <div className={styles.modalContent}>
                 <span className={styles.close} onClick={onClose}>&times;</span>
                 <h2>Добавление нового клиента</h2>
-                <form onSubmit={handleSubmit} className={styles.form}>
+                <form onSubmit={Submit} className={styles.form}>
                     <input type="text" name="Name" placeholder="Имя" onChange={addClient} value={formData.Name} />
                     <input type="text" name="surName" placeholder="Фамилия" onChange={addClient} value={formData.surName} />
                     <input type="text" name="lastName" placeholder="Отчество" onChange={addClient} value={formData.lastName} />

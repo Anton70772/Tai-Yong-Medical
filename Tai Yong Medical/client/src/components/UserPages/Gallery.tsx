@@ -2,10 +2,10 @@ import { useState } from 'react';
 import styles from '../../assets/Gallery.module.css';
 
 const images: string[] = [
-    '/sky.jpg',
-    '/sky.jpg',
-    '/sky.jpg',
-    '/sky.jpg',
+    '/1.jpg',
+    '/2.jpg',
+    '/kt.jpg',
+    '/kt2.jpg',
     '/sky.jpg',
     '/sky.jpg',
     '/sky.jpg',
@@ -27,7 +27,7 @@ const Gallery: React.FC = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles.header}>Наша Галерея</h1>
-            <p className={styles.description}>Посмотрите на примеры наших работ и качество наших услуг.</p>
+            <p className={styles.description}>Посмотрите на новейшее оборудование и качество наших услуг.</p>
             <div className={styles.grid}>
                 {images.map((image, index) => (
                     <img

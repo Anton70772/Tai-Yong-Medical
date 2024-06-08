@@ -50,7 +50,7 @@ const AdminSpecialists = () => {
         });
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const Submit = async (e: React.FormEvent) => {
         e.preventDefault();
         const form = new FormData();
         form.append('fullName', formData.fullName);
@@ -76,7 +76,7 @@ const AdminSpecialists = () => {
         }
     };
 
-    const handleDelete = async (id: number) => {
+    const Delete = async (id: number) => {
         try {
             await axios.delete(`http://localhost:4200/doctor/doctors/${id}`);
             fetchDoctors();
@@ -85,7 +85,7 @@ const AdminSpecialists = () => {
         }
     };
 
-    const handleEdit = (doctor: Doctor) => {
+    const Edit = (doctor: Doctor) => {
         setSelectedDoctor(doctor);
         setFormData({
             fullName: doctor.fullName,
@@ -123,8 +123,8 @@ const AdminSpecialists = () => {
                         <img src={`http://localhost:4200${doctor.photo}`} alt={doctor.fullName} className={styles.card__photo} />
                         <h2 className={styles.card__name}>{doctor.fullName}</h2>
                         <p className={styles.card__description}>{doctor.position}</p>
-                        <button onClick={() => handleEdit(doctor)} className={styles.editButton}>Редактировать</button>
-                        <button onClick={() => handleDelete(doctor.id)} className={styles.deleteButton}>Удалить</button>
+                        <button onClick={() => Edit(doctor)} className={styles.editButton}>Редактировать</button>
+                        <button onClick={() => Delete(doctor.id)} className={styles.deleteButton}>Удалить</button>
                     </div>
                 ))}
             </div>
@@ -133,7 +133,7 @@ const AdminSpecialists = () => {
                     <div className={styles.overlay} onClick={resetForm}></div>
                     <div className={styles.modalContent}>
                         <button className={styles.closeButton} onClick={resetForm}>×</button>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={Submit}>
                             <label>
                                 Полное имя:
                                 <input

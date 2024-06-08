@@ -7,4 +7,5 @@ export interface IAuth {
     phone: string;
     email: string;
     password: string;
+    confirmPassword?: string;
 }

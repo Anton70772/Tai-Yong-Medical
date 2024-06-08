@@ -6,7 +6,7 @@ import '../../assets/auth.css';
 import { IAuth } from '../types/IAuth';
 
 const Auth = () => {
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IAuth>({
+    const { register, handleSubmit, watch, formState: { errors, isValid }, setError } = useForm<IAuth>({
         mode: 'onChange',
     });
     const navigate = useNavigate();
@@ -20,6 +20,11 @@ const Auth = () => {
 
     const onSubmit = async (data: IAuth) => {
         try {
+            if (data.password !== data.confirmPassword) {
+                setError('confirmPassword', { type: 'manual', message: 'Пароли не совпадают' });
+                return;
+            }
+
             const response = await axios.post('http://localhost:4200/client/login', data, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,6 +47,8 @@ const Auth = () => {
             }
         }
     };
+
+    const password = watch('password');
 
     return (
         <div className="container">
@@ -68,12 +75,25 @@ const Auth = () => {
                         type="password"
                         {...register('password', {
                             required: 'Пароль обязателен',
-                            minLength: { value: 1, message: 'Минимальная длина пароля 8 символов' },
+                            minLength: { value: 3, message: 'Минимальная длина пароля 8 символов' },
                             maxLength: { value: 16, message: 'Максимальная длина пароля 16 символов' }
                         })}
                         autoComplete='off'
                     />
                     {errors.password && <span className="error-message">{errors.password.message}</span>}
+                </label>
+
+                <label className='form-container__label'>
+                    Подтвердите пароль:
+                    <input
+                        type="password"
+                        {...register('confirmPassword', {
+                            required: 'Подтверждение пароля обязательно',
+                            validate: value => value === password || 'Пароли не совпадают'
+                        })}
+                        autoComplete='off'
+                    />
+                    {errors.confirmPassword && <span className="error-message">{errors.confirmPassword.message}</span>}
                 </label>
 
                 <button className='reg-button' type="submit" disabled={!isValid}>Войти</button>

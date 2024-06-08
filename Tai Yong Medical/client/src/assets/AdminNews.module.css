@@ -55,3 +55,42 @@
 .news__itemText {
     font-size: 18px;
 }
+
+.news__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.news__button {
+    padding: 10px 20px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.news__button:hover {
+    background-color: rgb(252, 18, 18);
+}
+
+.news__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.news__form input {
+    padding: 10px;
+    border: 2px solid #00776b;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.news__form .news__button {
+    align-self: flex-start;
+    margin-top: 10px;
+}

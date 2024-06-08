@@ -37,55 +37,69 @@ const Header = () => {
 
     return (
         <div className='header-container'>
-            {role && (
-                <nav className="nav">
-                    {role === 'administrator' && (
-                        <>
-                            <Link className="nav__link" to="/">Главная</Link>
-                            <Link className="nav__link" to="/services">Услуги и цены</Link>
-                            <Link className="nav__link" to="/admin_specialists">Специалисты</Link>
-                            <Link className="nav__link" to="/addClientAdmin">Клиенты</Link>
+            <nav className="nav">
+                {role === 'administrator' && (
+                    <>
+                        <Link className="nav__link" to="/">Главная</Link>
+                        <Link className="nav__link" to="/services">Услуги и цены</Link>
+                        <Link className="nav__link" to="/admin_specialists">Специалисты</Link>
+                        <Link className="nav__link" to="/addClientAdmin">Клиенты</Link>
 
-                            <div className="nav__logo">Tai Yong Medical</div>
+                        <div className="nav__logo">Tai Yong Medical</div>
 
-                            <Link className="nav__link" to="/gallery">Галерея</Link>
-                            <Link className="nav__link" to="/news">Новости</Link>
-                            <Link className="nav__link" to="/about">О нас</Link>
+                        <Link className="nav__link" to="/gallery">Галерея</Link>
+                        <Link className="nav__link" to="/news">Новости</Link>
+                        <Link className="nav__link" to="/about">О нас</Link>
 
-                            <Link className="nav__link" to="/profile"><CgProfile /> </Link>
-                        </>
-                    )}
-                    {role === 'stafferMedical' && (
-                        <>
-                            <Link className="nav__link" to="/">Главная</Link>
-                            <Link className="nav__link" to="/medAppointments">Записи</Link>
-                            <Link className="nav__link" to="/addpatient">Зарегистрировать клиента</Link>
+                        <Link className="nav__link" to="/profile"><CgProfile /> </Link>
+                    </>
+                )}
+                {role === 'stafferMedical' && (
+                    <>
+                        <Link className="nav__link" to="/">Главная</Link>
+                        <Link className="nav__link" to="/medAppointments">Записи</Link>
+                        <Link className="nav__link" to="/addpatient">Зарегистрировать клиента</Link>
 
-                            <div className="nav__logo">Tai Yong Medical</div>
+                        <div className="nav__logo">Tai Yong Medical</div>
 
-                            <Link className="nav__link" to="/orderingProsthesis">Заказать протез</Link>
-                            <Link className="nav__link" to="/addAppointmentMed">Записать клиента на прием</Link>
+                        <Link className="nav__link" to="/orderingProsthesis">Заказать протез</Link>
+                        <Link className="nav__link" to="/addAppointmentMed">Записать клиента на прием</Link>
 
-                            <Link className="nav__link" to="/medProfile"><CgProfile /> </Link>
-                        </>
-                    )}
-                    {role === 'user' && (
-                        <>
-                            <Link className="nav__link" to="/">Главная</Link>
-                            <Link className="nav__link" to="/services">Услуги и цены</Link>
-                            <Link className="nav__link" to="/specialists">Специалисты</Link>
+                        <Link className="nav__link" to="/medProfile"><CgProfile /> </Link>
+                    </>
+                )}
+                {role === 'user' && (
+                    <>
+                        <Link className="nav__link" to="/">Главная</Link>
+                        <Link className="nav__link" to="/services">Услуги и цены</Link>
+                        <Link className="nav__link" to="/specialists">Специалисты</Link>
 
-                            <div className="nav__logo">Tai Yong Medical</div>
+                        <div className="nav__logo">Tai Yong Medical</div>
 
-                            <Link className="nav__link" to="/galery">Галерея</Link>
-                            <Link className="nav__link" to="/news">Новости</Link>
-                            <Link className="nav__link" to="/about">О нас</Link>
+                        <Link className="nav__link" to="/gallery">Галерея</Link>
+                        <Link className="nav__link" to="/news">Новости</Link>
+                        <Link className="nav__link" to="/about">О нас</Link>
 
-                            <Link className="nav__link" to="/profile"><CgProfile /> </Link>
-                        </>
-                    )}
-                </nav>
-            )}
+                        <Link className="nav__link" to="/profile"><CgProfile /> </Link>
+                    </>
+                )}
+                {!role && (
+                    <>
+                        <Link className="nav__link" to="/">Главная</Link>
+                        <Link className="nav__link" to="/services">Услуги и цены</Link>
+                        <Link className="nav__link" to="/specialists">Специалисты</Link>
+
+                        <div className="nav__logo">Tai Yong Medical</div>
+
+                        <Link className="nav__link" to="/gallery">Галерея</Link>
+                        <Link className="nav__link" to="/news">Новости</Link>
+                        <Link className="nav__link" to="/about">О нас</Link>
+
+                        <Link className="nav__link" to="/authorization">Войти</Link>
+                        <Link className="nav__link" to="/registration">Зарегистрироваться</Link>
+                    </>
+                )}
+            </nav>
         </div>
     );
 }

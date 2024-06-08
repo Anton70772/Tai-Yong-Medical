@@ -7,7 +7,7 @@ import AddAdminClientForm from './AddAdminClientForm';
 
 const AddClientAdmin = () => {
     const [clients, setClients] = useState<IProfile[]>([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [ModalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchClients = async () => {
@@ -22,23 +22,23 @@ const AddClientAdmin = () => {
         fetchClients();
     }, []);
 
-    const handleAddClient = (newClient: IProfile) => {
+    const AddClient = (newClient: IProfile) => {
         setClients(prevClients => [...prevClients, newClient]);
     };
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
+    const OpenModal = () => {
+        setModalOpen(true);
     };
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
+    const CloseModal = () => {
+        setModalOpen(false);
     };
 
     return (
         <div className={styles.container}>
             <ClientList clients={clients} />
-            <button onClick={handleOpenModal} className={styles.addButton}>Добавить нового клиента</button>
-            {isModalOpen && <AddAdminClientForm onClose={handleCloseModal} onAddClient={handleAddClient} />}
+            <button onClick={OpenModal} className={styles.addButton}>Добавить нового клиента</button>
+            {ModalOpen && <AddAdminClientForm onClose={CloseModal} onAddClient={AddClient} />}
         </div>
     );
 };

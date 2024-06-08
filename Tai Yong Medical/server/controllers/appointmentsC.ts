@@ -68,6 +68,46 @@ export const getAppointmentById = async (req: Request, res: Response) => {
     }
 };
 
+export const getClientAppointments = async (req: Request, res: Response) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    try {
+        if (!token) {
+            return res.status(401).json({ error: 'Токен не найден' });
+        }
+
+        const decodedToken = jwt.verify(token, secretKey) as { clientId: number };
+
+        const clientId = decodedToken.clientId;
+
+        if (!clientId) {
+            return res.status(403).json({ error: 'Нет доступа к записям' });
+        }
+
+        const appointments = await Appointment.findAll({
+            where: {
+                clients_id: clientId
+            },
+            include: [
+                {
+                    model: Client,
+                    attributes: ['id', 'Name', 'surName', 'lastName']
+                },
+                {
+                    model: Service,
+                    attributes: ['id', 'name']
+                }
+            ]
+        });
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Ошибка при получении записей' });
+    }
+};
+
 export const createAppointment = async (req: Request, res: Response) => {
     const { dateTime, room, status, doctors_id, services_id, clients_id } = req.body;
     const authHeader = req.headers['authorization'];
@@ -98,9 +138,11 @@ export const createAppointment = async (req: Request, res: Response) => {
             services_id,
         });
 
+        console.log('Успешно создана новая запись:', newAppointment);
+
         res.status(201).json(newAppointment);
     } catch (error) {
-        console.error('Error during appointment creation:', error);
+        console.error('Ошибка при создании новой записи:', error);
         res.status(500).json({ error: 'Ошибка при создании новой записи' });
     }
 };
