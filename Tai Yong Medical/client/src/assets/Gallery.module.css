@@ -21,6 +21,7 @@
 .grid {
     display: flex;
     flex-wrap: wrap;
+    background-size: cover;
     gap: 20px;
     justify-content: center;
 }

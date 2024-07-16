@@ -17,7 +17,7 @@ const AddAppointmentMed = () => {
             try {
                 const response = await axios.get('http://localhost:4200/client/clients');
                 setClients(response.data);
-                setFilterClients(response.data); // Initialize filtered clients
+                setFilterClients(response.data);
             } catch (error) {
                 console.error('Ошибка при получении списка клиентов:', error);
             }

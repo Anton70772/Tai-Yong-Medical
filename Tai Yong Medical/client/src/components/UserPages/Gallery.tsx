@@ -6,11 +6,11 @@ const images: string[] = [
     '/2.jpg',
     '/kt.jpg',
     '/kt2.jpg',
-    '/sky.jpg',
-    '/sky.jpg',
-    '/sky.jpg',
-    '/sky.jpg',
-    '/sky.jpg',
+    '/7.jpg',
+    '/8.jpg',
+    '/9.png',
+    '/10.jpg',
+    '/11.jpg',
 ];
 
 const Gallery: React.FC = () => {
@@ -27,7 +27,7 @@ const Gallery: React.FC = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles.header}>Наша Галерея</h1>
-            <p className={styles.description}>Посмотрите на новейшее оборудование и качество наших услуг.</p>
+            <p className={styles.description}>Посмотрите на новейшее оборудование и примеры наших работ.</p>
             <div className={styles.grid}>
                 {images.map((image, index) => (
                     <img

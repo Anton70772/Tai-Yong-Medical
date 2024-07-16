@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: taiyongmedical
+-- Host: 127.0.0.1    Database: taiyongmedical
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -37,7 +37,7 @@ CREATE TABLE `appointments` (
   CONSTRAINT `fk_appointments_doctors1` FOREIGN KEY (`doctors_id`) REFERENCES `doctors` (`id`),
   CONSTRAINT `fk_appointments_patients1` FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`),
   CONSTRAINT `fk_appointments_services1` FOREIGN KEY (`services_id`) REFERENCES `services` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES (1,'2024-06-21 17:11:00',106,'Прием завершен',1,3,2),(2,'2024-06-15 00:00:00',112,'Прием завершен',1,1,1),(3,'2024-06-10 00:00:00',122,'Запись назначена',5,4,3),(4,'2024-06-20 13:00:00',105,'Прием завершен',5,1,10),(5,'2024-06-10 12:00:00',123,'Запись отменена',5,3,2),(6,'2024-06-14 13:00:00',123,'Запись назначена',5,3,4),(8,'2024-06-19 13:00:00',106,'Запись назначена',1,1,1),(9,'2024-06-05 07:00:00',115,'Запись назначена',2,2,2),(10,'2024-06-25 13:00:00',117,'Запись назначена',5,10,2),(11,'2024-06-12 12:00:00',121,'Запись назначена',21,3,10),(12,'2024-06-12 12:00:00',118,'Запись назначена',21,10,1);
+INSERT INTO `appointments` VALUES (1,'2024-06-21 17:11:00',106,'Прием завершен',1,3,2),(2,'2024-06-15 00:00:00',112,'Прием завершен',1,1,1),(3,'2024-06-10 00:00:00',122,'Запись назначена',5,4,3),(4,'2024-06-20 13:00:00',105,'Прием завершен',5,1,10),(5,'2024-06-10 12:00:00',123,'Запись отменена',5,3,2),(6,'2024-06-14 13:00:00',123,'Запись назначена',5,3,4),(8,'2024-06-19 13:00:00',106,'Запись назначена',1,1,1),(9,'2024-06-05 07:00:00',115,'Запись назначена',2,2,2),(10,'2024-06-25 13:00:00',117,'Запись назначена',5,10,2);
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +69,7 @@ CREATE TABLE `clients` (
   `password` varchar(16) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Полищук','Антон','Александрович','2005-09-21','М','+79806261773','anton@yandex.ru','administrator'),(2,'Беспалов','Ярослав','Викторович','2008-02-06','М','+79307701773','yaroslav@yandex.ru','stafferMedical'),(5,'тест','тест','Александрович','2005-09-21','М','+79806261773','anton1@yandex.ru','hash'),(7,'Тестов','Тест','Тестович','2024-05-17',NULL,'+79007777777','klava@yandex.ru','klava343'),(8,'кмкаум','амвамвм','вамвамввм','2239-09-10',NULL,'+79007777777','djiwjd@yandex.ru','sdhed2we24234'),(9,'Клиент','клиент','клиент','2024-06-05',NULL,'+79007777777','klient@yandex.ru','klient77'),(10,'амуамумау','емемек','уамумукаму','2024-06-15',NULL,'+79007777777','test@yandex.ru','test2131'),(11,'Ярик','Ярик','Ярик','2008-02-06',NULL,'+79301860642','yarik@yandex.ru','yarik123'),(15,'кмукмук','вмукм','мукмукмукмку','2024-06-12',NULL,'+79996481971','testov@yandex.ru','testov123'),(16,'комп','комп','комп','2024-06-20',NULL,'+79007777777','komp@yandex.ru','komp123'),(17,'комп','комп','компудахтер','2024-06-21',NULL,'+79007777777','kompudachter@yandex.ru','kompudachter123'),(18,'мыш','мыш','мыш','2024-06-02',NULL,'+79007777777','mish@yandex.ru','mish923'),(19,'моник','моник','моник','2024-06-09',NULL,'+79007777997','monik@yandex.ru','monik123'),(20,'кукмукму','авпккуамку','укмукмум','2024-06-02',NULL,'+79007777997','abcdefg@yandex.ru','abcdefg123'),(21,'СейчасЗарегал','СейчасЗарегал','СейчасЗарегал','2008-06-11',NULL,'+79301238193','now@yandex.ru','now7now');
+INSERT INTO `clients` VALUES (1,'Полищук','Антон','Александрович','2005-09-21','М','+79806261773','anton@yandex.ru','administrator'),(2,'Беспалов','Ярослав','Викторович','2008-02-06','М','+79307701773','yaroslav@yandex.ru','stafferMedical'),(5,'тест','тест','Александрович','2005-09-21','М','+79806261773','anton1@yandex.ru','hash'),(7,'Тестов','Тест','Тестович','2024-05-17',NULL,'+79007777777','klava@yandex.ru','klava343'),(8,'кмкаум','амвамвм','вамвамввм','2239-09-10',NULL,'+79007777777','djiwjd@yandex.ru','sdhed2we24234'),(9,'Клиент','клиент','клиент','2024-06-05',NULL,'+79007777777','klient@yandex.ru','klient77'),(10,'амуамумау','емемек','уамумукаму','2024-06-15',NULL,'+79007777777','test@yandex.ru','test2131'),(11,'Ярик','Ярик','Ярик','2008-02-06',NULL,'+79301860642','yarik@yandex.ru','yarik123'),(15,'кмукмук','вмукм','мукмукмукмку','2024-06-12',NULL,'+79996481971','testov@yandex.ru','testov123'),(16,'комп','комп','комп','2024-06-20',NULL,'+79007777777','komp@yandex.ru','komp123'),(17,'комп','комп','компудахтер','2024-06-21',NULL,'+79007777777','kompudachter@yandex.ru','kompudachter123'),(18,'мыш','мыш','мыш','2024-06-02',NULL,'+79007777777','mish@yandex.ru','mish923'),(19,'моник','моник','моник','2024-06-09',NULL,'+79007777997','monik@yandex.ru','monik123'),(20,'кукмукму','авпккуамку','укмукмум','2024-06-02',NULL,'+79007777997','abcdefg@yandex.ru','abcdefg123');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +102,7 @@ CREATE TABLE `doctors` (
   UNIQUE KEY `phone_UNIQUE` (`phone`),
   UNIQUE KEY `fullName_UNIQUE` (`fullName`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -303,4 +303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-08 10:55:13
+-- Dump completed on 2024-06-08  8:04:52

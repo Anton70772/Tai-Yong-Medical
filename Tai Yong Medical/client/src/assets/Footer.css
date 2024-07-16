@@ -1,9 +1,10 @@
 .footer-container {
     background-color: #333;
     height: 350px;
+    width: 100%;
     color: #fff;
     padding: 10px 0;
-    position: relative;
+    position: absolute;
     clear: both;
 }
 
@@ -38,6 +39,7 @@
 }
 
 .social-links li {
+    background-color: #ff0000;
     margin-bottom: 10px;
 }
 
@@ -47,9 +49,9 @@
     transition: color 0.3s ease;
 }
 
-.social-links a:hover {
+/* .social-links a:hover {
     color: #ff0000;
-}
+} */
 
 .footer-bottom {
     text-align: center;

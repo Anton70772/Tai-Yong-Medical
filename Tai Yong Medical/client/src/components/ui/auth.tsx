@@ -75,7 +75,7 @@ const Auth = () => {
                         type="password"
                         {...register('password', {
                             required: 'Пароль обязателен',
-                            minLength: { value: 3, message: 'Минимальная длина пароля 8 символов' },
+                            minLength: { value: 6, message: 'Минимальная длина пароля 8 символов' },
                             maxLength: { value: 16, message: 'Максимальная длина пароля 16 символов' }
                         })}
                         autoComplete='off'
